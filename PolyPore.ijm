@@ -13,11 +13,7 @@ macro "Calculate Polygon Area" {
 	
 	getPixelSize(unit, pixelWidth, pixelHeight);
 	
-	title = "Polygon Area - " + imageName;
-	msg = "Polygon Area: " + polygonArea + " " + unit + "²";
-	Dialog.create(title);
-	Dialog.addMessage(msg);
-	Dialog.show();
+	showMessage("Polygon Area: " + polygonArea + " " + unit + "²");
 	
 	// Comment out below to not save file
 	// saveDir = getDirectory("image");
@@ -49,7 +45,7 @@ macro "PolyPore" {
 	}
 	setOption("BlackBackground", true);
 	run("Convert to Mask");
-	run("Analyze Particles...", "  show=[Overlay Masks] display exclude clear include");
+	run("Analyze Particles...", "display exclude clear include");
 	
 	run("Summarize");
 		
