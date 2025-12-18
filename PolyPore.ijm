@@ -5,12 +5,9 @@ macro "Calculate Polygon Area" {
 	if (selectionType() == -1) {
     		exit("No selection found. Please use the Polygon tool to select an area first.");
 	}
-	
 	imageName = getTitle();
-	
 	List.setMeasurements;
 	polygonArea = List.getValue("Area");
-	
 	getPixelSize(unit, pixelWidth, pixelHeight);
 	
 	showMessage("Polygon Area: " + polygonArea + " " + unit + "²");
@@ -28,11 +25,17 @@ macro "PolyPore" {
 	imageName = getTitle();
 	List.setMeasurements;
 	polygonArea = List.getValue("Area");
-
 	getPixelSize(unit, pixelWidth, pixelHeight);
+	
 	saveDir = getDirectory("image");
-	baseName = File.nameWithoutExtension;
+	baseName = File.nameWithoutExtension(imageName);
+	
+	run("8-bit");
+	run("Clear Outside");
 	run("Crop");
+	setBackgroundColor(255, 255, 255);
+	run("Clear Outside");
+	
 	run("Threshold...");
 	setAutoThreshold("Default no-reset");
     
