@@ -6,7 +6,7 @@ A collection of ImageJ macros for analyzing porosity in polygon selection
 
 - **Set Measurements for Porosity**: Configure ImageJ measurements for porosity analysis
 - **Calculate Polygon Area**: Quickly measure the area of a polygon selection
-- **PolyPore**: Records porosity results within polygon selection, and the polygon's area, to CSV
+- **PolyPore**: Records porosity results within polygon selection, and the polygon's area & diameter, to CSV
 
 ## Installation
 
