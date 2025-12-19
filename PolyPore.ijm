@@ -28,7 +28,7 @@ macro "PolyPore" {
 	getPixelSize(unit, pixelWidth, pixelHeight);
 	
 	saveDir = getDirectory("image");
-	baseName = File.nameWithoutExtension(imageName);
+	baseName = substring(imageName, 0, lastIndexOf(imageName, "."));
 	
 	run("8-bit");
 	run("Clear Outside");
@@ -50,6 +50,15 @@ macro "PolyPore" {
 	run("Convert to Mask");
 	run("Analyze Particles...", "display exclude clear include");
 	
+	if (nResults > 0) {
+		for (i = 0; i < nResults; i++) {
+			area = getResult("Area", i);
+			diameter = 2 * sqrt(area / PI);
+			setResult("Diameter", i, diameter);
+		}
+		updateResults();
+	}
+
 	run("Summarize");
 		
 	if (nResults > 0) {
